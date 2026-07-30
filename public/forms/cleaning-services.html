@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cleaning Services Inquiry</title>
+  <link rel="icon" href="./graphics/bhblogo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/cleaning.css">
+</head>
+<body>
+
+<main class="container">
+  <form id="contact-form" class="form-card" novalidate>
+
+    <!-- AFFILIATE TRACKING -->
+    <input type="hidden" id="promoterCode" name="promoterCode" value="Direct">
+    <input type="hidden" id="businessSlug" name="business_slug" value="cleaning">
+    
+    <div id="promoter-badge" class="status success hidden" style="margin-bottom: 1.5rem;">
+      Referred by: <strong id="promoter-display">Direct</strong>
+    </div>
+
+    <!-- ================= PAGE 1: CONTACT & SERVICE TIER ================= -->
+    <section class="form-page" id="page-1">
+      <h2>Contact & Service Selection</h2>
+      
+      <!-- Full Name -->
+      <div class="field">
+        <label for="name">Full Name *</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          required 
+          pattern="^[a-zA-Z\s]{2,50}$" 
+          title="Letters and spaces only (2-50 characters)"
+          placeholder="Jane Doe" 
+        />
+      </div>
+
+      <!-- Email Address -->
+      <div class="field">
+        <label for="email">Email Address *</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required 
+          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+          title="Please enter a valid email address"
+          placeholder="jane@example.com" 
+        />
+      </div>
+
+      <!-- Phone Number -->
+      <div class="field">
+        <label for="phone">Phone Number *</label>
+        <div class="phone-group">
+          <select id="country-code" name="countryCode">
+            <option value="+1">+1 (USA/CAN)</option>
+            <option value="+44">+44 (UK)</option>
+            <option value="+63">+63 (PH)</option>
+            <option value="+61">+61 (AUS)</option>
+          </select>
+          <input 
+            type="tel" 
+            id="phone" 
+            name="phone" 
+            placeholder="123-456-7890" 
+            required 
+            pattern="^[0-9\-\+\s\(\)]{7,15}$"
+            title="Please enter a valid phone number (7 to 15 digits)"
+          />
+        </div>
+      </div>
+
+      <!-- Service Location Address -->
+      <div class="field">
+        <label for="address">Service Location Address *</label>
+        <input 
+          type="text" 
+          id="address" 
+          name="address" 
+          required 
+          minlength="5"
+          maxlength="120"
+          placeholder="123 Main St, City, State, Zip" 
+        />
+      </div>
+
+      <!-- Service Tier -->
+      <div class="field">
+        <label>What type of cleaning service do you require today? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="serviceTier" value="Standard & Deep Residential Cleaning" required> Standard & Deep Residential Cleaning</label>
+          <label><input type="radio" name="serviceTier" value="Move-In / Move-Out Turnover Cleaning"> Move-In / Move-Out Turnover Cleaning</label>
+          <label><input type="radio" name="serviceTier" value="Post-Construction Clean-Up"> Post-Construction Clean-Up</label>
+          <label><input type="radio" name="serviceTier" value="Commercial & Office Workspaces"> Commercial & Office Workspaces</label>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-next" onclick="nextPage(1)">Next ➔</button>
+      </div>
+    </section>
+
+    <!-- ================= PAGE 2: PROPERTY DETAILS & LOGISTICS ================= -->
+    <section class="form-page hidden" id="page-2">
+      <h2>Property Details & Care</h2>
+
+      <!-- Property Status -->
+      <div class="field">
+        <label>What is the current status of the property? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="propertyStatus" value="The property is completely empty/vacant" required> The property is completely empty/vacant (Recommended)</label>
+          <label><input type="radio" name="propertyStatus" value="There is still furniture left inside the property"> There is still furniture left inside the property</label>
+          <label>
+            <input type="radio" name="propertyStatus" value="Other"> Other:
+            <input type="text" id="propertyStatusOther" placeholder="Specify status" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Cabinet Cleaning -->
+      <div class="field">
+        <label>Does this turnover require inside-cabinet cleaning? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="insideCabinets" value="Yes, please wipe down and sanitize inside all empty kitchen/bathroom cupboards" required> Yes, please wipe down and sanitize inside all empty kitchen/bathroom cupboards</label>
+          <label><input type="radio" name="insideCabinets" value="No, exterior cabinet cleaning only"> No, exterior cabinet cleaning only</label>
+          <label>
+            <input type="radio" name="insideCabinets" value="Other"> Other:
+            <input type="text" id="cabinetsOther" placeholder="Specify preference" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Property Size -->
+      <div class="field">
+        <label for="propertySize">What is the approximate size of the property? *</label>
+        <input type="text" id="propertySize" name="propertySize" placeholder="e.g., 1,200 sq ft or 110 sqm" required />
+      </div>
+
+      <!-- Focus Areas -->
+      <div class="field">
+        <label>Focus Areas: What parts of the house or specific items require the absolute most attention? *</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="focusAreas" value="Kitchen appliances & heavy degreasing"> Kitchen appliances & heavy degreasing</label>
+          <label><input type="checkbox" name="focusAreas" value="Bathroom deep scrubbing, grout, & tile scale removal"> Bathroom deep scrubbing, grout, & tile scale removal</label>
+          <label><input type="checkbox" name="focusAreas" value="Living room dusting, baseboards, & media centers"> Living room dusting, baseboards, & media centers</label>
+          <label><input type="checkbox" name="focusAreas" value="High-traffic floor mopping & vacuuming"> High-traffic floor mopping & vacuuming</label>
+          <label><input type="checkbox" name="focusAreas" value="Dusting high fixtures, ceiling fans, & light switches"> Dusting high fixtures, ceiling fans, & light switches</label>
+          <label><input type="checkbox" name="focusAreas" value="Dusting & wiping down window blinds/ledges"> Dusting & wiping down window blinds/ledges</label>
+          <label><input type="checkbox" name="focusAreas" value="Sanitizing high-touch surfaces (doorknobs, handles, railings)"> Sanitizing high-touch surfaces (doorknobs, handles, railings)</label>
+          <label><input type="checkbox" name="focusAreas" value="Whole-house refreshing (Clean everything equally!)"> Whole-house refreshing (Clean everything equally!)</label>
+        </div>
+      </div>
+
+      <!-- Delicate Surfaces -->
+      <div class="field">
+        <label>⚠️ Delicate Surfaces: Are there any specific materials or household items our crew should use specialized care on? *</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="delicateSurfaces" value="Natural Marble or Granite countertops"> Natural Marble or Granite countertops</label>
+          <label><input type="checkbox" name="delicateSurfaces" value="Solid Hardwood flooring (Requires specialized wood cleaner)"> Solid Hardwood flooring (Requires specialized wood cleaner)</label>
+          <label><input type="checkbox" name="delicateSurfaces" value="Delicate glass, mirrors, or crystal chandeliers"> Delicate glass, mirrors, or crystal chandeliers</label>
+          <label><input type="checkbox" name="delicateSurfaces" value="Stainless steel appliances (Requires streak-free polish)"> Stainless steel appliances (Requires streak-free polish)</label>
+          <label><input type="checkbox" name="delicateSurfaces" value="No special surfaces—standard premium cleaning products are fine!"> No special surfaces—standard premium cleaning products are fine!</label>
+        </div>
+      </div>
+
+      <!-- Entry Access -->
+      <div class="field">
+        <label>How will our cleaning crew gain entry into the property? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="entryMethod" value="I will be on-site to greet the crew personally" required> I will be on-site to greet the crew personally</label>
+          <label><input type="radio" name="entryMethod" value="I will leave a key in a secure lockbox / provide a digital door code"> I will leave a key in a secure lockbox / provide a digital door code</label>
+          <label><input type="radio" name="entryMethod" value="Building reception / concierge gate will hand over the key"> Building reception / concierge gate will hand over the key</label>
+          <label>
+            <input type="radio" name="entryMethod" value="Other"> Other:
+            <input type="text" id="entryOther" placeholder="Specify instructions" />
+          </label>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-prev" onclick="prevPage(2)">⬅ Previous</button>
+        <button type="button" class="btn btn-next" onclick="nextPage(2)">Next ➔</button>
+      </div>
+    </section>
+
+    <!-- ================= PAGE 3: ADD-ONS, SCHEDULE & SOURCE ================= -->
+    <section class="form-page hidden" id="page-3">
+      <h2>Add-Ons & Scheduling</h2>
+
+      <!-- Premium Add-Ons -->
+      <div class="field">
+        <label>Would you like to add any specialty tasks to your cleaning? *</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="addOns" value="Interior Window Cleaning"> Interior Window Cleaning: Detailed glass, tracks, and screen cleaning.</label>
+          <label><input type="checkbox" name="addOns" value="Inside Refrigerator"> Inside Refrigerator: Deep scrub, degreasing, and crisp organization.</label>
+          <label><input type="checkbox" name="addOns" value="Inside Oven"> Inside Oven: Intensive breakdown of baked-on grease.</label>
+          <label><input type="checkbox" name="addOns" value="Upholstery & Mattress Cleaning"> Upholstery & Mattress Cleaning: Vacuuming and sanitation of sofas/mattresses.</label>
+          <label><input type="checkbox" name="addOns" value="Balcony / Patio Power Wash"> Balcony / Patio Power Wash: High-pressure washing.</label>
+          <label><input type="checkbox" name="addOns" value="Laundry & Linen Change"> Laundry & Linen Change: Stripping beds and replacing sheets.</label>
+          <label><input type="checkbox" name="addOns" value="No add-ons needed"> No add-ons needed—just the core service, please!</label>
+        </div>
+      </div>
+
+      <!-- Schedule Date & Time -->
+      <div class="field">
+        <label for="cleaningDate">What is your preferred date for the cleaning session? *</label>
+        <input type="date" id="cleaningDate" name="cleaningDate" required />
+      </div>
+
+      <div class="field">
+        <label>What is your preferred time slot? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="timeSlot" value="Morning Session (8:00 AM – 12:00 PM)" required> Morning Session (Typically 8:00 AM – 12:00 PM)</label>
+          <label><input type="radio" name="timeSlot" value="Afternoon Session (1:00 PM – 5:00 PM)"> Afternoon Session (Typically 1:00 PM – 5:00 PM)</label>
+          <label><input type="radio" name="timeSlot" value="Evening / After-Office Hours"> Evening / After-Office Hours (Best for commercial offices)</label>
+        </div>
+      </div>
+
+      <!-- Special Instructions -->
+      <div class="field">
+        <label for="specialInstructions">Are there any specific focus areas, delicate surfaces, or special instructions our crew should know about? *</label>
+        <textarea id="specialInstructions" name="specialInstructions" rows="4" placeholder="Mention pet details, key codes, fragile items..." required></textarea>
+      </div>
+
+      <!-- Marketing Source -->
+      <div class="field">
+        <label>How did you hear about us? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="leadSource" value="Facebook Page" required> Facebook Page</label>
+          <label><input type="radio" name="leadSource" value="Facebook Ad / Sponsored Post"> Facebook Ad / Sponsored Post</label>
+          <label><input type="radio" name="leadSource" value="Google Search"> Google Search</label>
+          <label><input type="radio" name="leadSource" value="Recommended by a Friend or Family member"> Recommended by a Friend or Family member</label>
+          <label><input type="radio" name="leadSource" value="Saw cleaning vehicle / uniform in neighborhood"> Saw cleaning vehicle / uniform in neighborhood</label>
+          <label>
+            <input type="radio" name="leadSource" value="Other"> Other:
+            <input type="text" id="leadSourceOther" placeholder="Specify source" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Anti-Spam Honeypot Trap -->
+      <input type="text" id="website_hp" name="website_hp" style="display:none;" tabindex="-1" autocomplete="off" />
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-prev" onclick="prevPage(3)">⬅ Previous</button>
+        <button type="button" id="submit-btn" class="btn btn-submit">Submit Inquiry</button>
+      </div>
+      <p id="status-message" class="status"></p>
+    </section>
+
+  </form>
+
+  <!-- CONFIRMATION MODAL -->
+  <div id="confirmModal" class="modal-overlay" style="display:none;">
+    <div class="modal-box">
+      <h3>Confirm Your Inquiry</h3>
+      <p class="modal-subtext">Please double-check your information before submitting:</p>
+      <ul id="summaryList" class="summary-list"></ul>
+      <div class="modal-btn-group">
+        <button type="button" id="editBtn" class="btn btn-prev">Go Back & Edit</button>
+        <button type="button" id="finalSubmitBtn" class="btn btn-submit">Confirm & Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Post Submission Popup Modal -->
+  <div id="postSubmitModal" class="modal-overlay" style="display:none;">
+    <div class="modal-box">
+      <h3>Form Submitted!</h3>
+      <p class="modal-subtext">Would you like to submit another inquiry form?</p>
+      <div class="modal-btn-group">
+        <button id="submitAnotherNo" class="btn btn-prev" style="min-width: 100px;">No</button>
+        <button id="submitAnotherYes" class="btn btn-submit" style="min-width: 100px;">Yes</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script src="../js/cleaning.js"></script>
+</body>
+</html>

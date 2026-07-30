@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events and Rental Services</title>
+  <link rel="icon" href="./graphics/bhblogo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/events.css">
+</head>
+<body>
+
+<main class="container">
+  <form id="contact-form" class="form-card">
+
+    <!-- AFFILIATE TRACKING -->
+    <input type="hidden" id="promoterCode" name="promoterCode" value="Direct (No Referral)">
+    <input type="hidden" id="businessSlug" name="business_slug" value="events">
+    
+    <div id="promoter-badge" class="status success hidden" style="margin-bottom: 1.5rem;">
+      Referred by: <strong id="promoter-display"></strong>
+    </div>
+
+    <!-- ================= PAGE 1: CONTACT & EVENT DETAILS ================= -->
+    <section class="form-page" id="page-1">
+      <h2>Contact & Basic Event Details</h2>
+      
+      <div class="field">
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+
+      <div class="field">
+        <label for="address">Address *</label>
+        <input type="text" id="address" name="address" required />
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone Number *</label>
+        <div class="phone-group">
+          <select id="country-code" name="countryCode">
+            <option value="+1">+1 (USA/CAN)</option>
+            <option value="+44">+44 (UK)</option>
+            <option value="+63">+63 (PH)</option>
+            <option value="+61">+61 (AUS)</option>
+          </select>
+          <input type="tel" id="phone" name="phone" placeholder="123-456-7890" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Type of Event *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="eventType" value="Wedding" required> Wedding</label>
+          <label><input type="radio" name="eventType" value="Birthday"> Birthday</label>
+          <label><input type="radio" name="eventType" value="Corporate Gala/Event"> Corporate Gala/Event</label>
+          <label><input type="radio" name="eventType" value="Anniversary"> Anniversary</label>
+          <label><input type="radio" name="eventType" value="Family Gathering"> Family Gathering</label>
+          <label><input type="radio" name="eventType" value="Seminar/Training"> Seminar/Training</label>
+          <label>
+            <input type="radio" name="eventType" value="Other"> Other:
+            <input type="text" id="eventTypeOther" placeholder="Specify event type" />
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="eventDate">Preferred Event Date *</label>
+        <input type="date" id="eventDate" name="eventDate" required />
+      </div>
+
+      <div class="time-row">
+        <div class="field">
+          <label for="startTime">Event Start Time *</label>
+          <input type="time" id="startTime" name="startTime" required />
+        </div>
+        <div class="field">
+          <label for="endTime">Event End Time *</label>
+          <input type="time" id="endTime" name="endTime" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="guestCount">Estimated Guest Count *</label>
+        <input type="number" id="guestCount" name="guestCount" min="1" placeholder="e.g. 150" required />
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-next" onclick="nextPage(1)">Next ➔</button>
+      </div>
+    </section>
+
+    <!-- ================= PAGE 2: SERVICES REQUIRED ================= -->
+    <section class="form-page hidden" id="page-2">
+      <h2>Event Services Required</h2>
+
+      <!-- Venue & Location -->
+      <div class="field">
+        <label>What venue and location services do you require?</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="venueServices" value="Event venue (general)"> Event venue (general)</label>
+          <label><input type="checkbox" name="venueServices" value="Banquet hall"> Banquet hall</label>
+          <label><input type="checkbox" name="venueServices" value="Indoor event venue"> Indoor event venue</label>
+          <label><input type="checkbox" name="venueServices" value="Outdoor event venue"> Outdoor event venue</label>
+          <label><input type="checkbox" name="venueServices" value="Wedding venue"> Wedding venue</label>
+          <label><input type="checkbox" name="venueServices" value="With chapel"> With chapel</label>
+          <label>
+            <input type="checkbox" name="venueServices" value="Already booked a venue"> Already booked a venue:
+            <input type="text" id="venueBookedName" placeholder="Specify venue name" />
+          </label>
+          <label>
+            <input type="checkbox" name="venueServices" value="Other"> Other:
+            <input type="text" id="venueOther" placeholder="Specify other venue service" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Design & Decor -->
+      <div class="field">
+        <label>What design and decor elements do you need?</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="decorServices" value="Venue Decoration (Full space transformation)"> Venue Decoration (Full space transformation)</label>
+          <label><input type="checkbox" name="decorServices" value="Table Decor (Centerpieces, linens, place settings)"> Table Decor (Centerpieces, linens, place settings)</label>
+          <label>
+            <input type="checkbox" name="decorServices" value="Other"> Other:
+            <input type="text" id="decorOther" placeholder="Specify decor needs" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Catering & Dessert -->
+      <div class="field">
+        <label>What catering and dessert services do you require?</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="cateringServices" value="Catering (Food & Beverage)"> Catering (Food & Beverage)</label>
+          <label><input type="checkbox" name="cateringServices" value="Wedding/Event Cake"> Wedding/Event Cake</label>
+          <label><input type="checkbox" name="cateringServices" value="Pastries & Dessert Table"> Pastries & Dessert Table</label>
+          <label>
+            <input type="checkbox" name="cateringServices" value="Other"> Other:
+            <input type="text" id="cateringOther" placeholder="Specify catering needs" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Photography & Media -->
+      <div class="field">
+        <label>What photography and media services do you need?</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="mediaServices" value="Photographer (Still photography)"> Photographer (Still photography)</label>
+          <label><input type="checkbox" name="mediaServices" value="Videographer (Event highlights/video documentation)"> Videographer (Event highlights)</label>
+          <label><input type="checkbox" name="mediaServices" value="Cinematography (Cinematic, short-film style storytelling)"> Cinematography (Cinematic style)</label>
+          <label><input type="checkbox" name="mediaServices" value="Photo Booth (Interactive guest experience)"> Photo Booth</label>
+          <label>
+            <input type="checkbox" name="mediaServices" value="Other"> Other:
+            <input type="text" id="mediaOther" placeholder="Specify media needs" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Transportation -->
+      <div class="field">
+        <label>What transportation services do you require?</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="transportServices" value="Limousine / Party Bus"> Limousine / Party Bus</label>
+          <label>
+            <input type="checkbox" name="transportServices" value="Other"> Other:
+            <input type="text" id="transportOther" placeholder="Specify transit needs" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Coordination & Planning -->
+      <div class="field">
+        <label>What planning and coordination services do you require?</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="planningServices" value="Full Planning"> Full Planning (Concept design, vendor curation, logistics)</label>
+          <label><input type="checkbox" name="planningServices" value="Wedding Planner / Event Planner"> Wedding Planner / Event Planner (Partial planning)</label>
+          <label><input type="checkbox" name="planningServices" value="Wedding Coordinator / Event Coordinator"> Wedding Coordinator / Event Coordinator</label>
+          <label><input type="checkbox" name="planningServices" value="Wedding Week-Off Planner"> Wedding Week-Off Planner</label>
+          <label><input type="checkbox" name="planningServices" value="Wedding Day-Off Planner"> Wedding Day-Off Planner</label>
+          <label>
+            <input type="checkbox" name="planningServices" value="Other"> Other:
+            <input type="text" id="planningOther" placeholder="Specify planning needs" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Entertainment, Styling & Extras -->
+      <div class="field">
+        <label>What entertainment, styling, and extra services do you require?</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="extraServices" value="Soloist / Pianist"> Soloist / Pianist</label>
+          <label><input type="checkbox" name="extraServices" value="Live Music (Full band or ensemble)"> Live Music (Full band or ensemble)</label>
+          <label><input type="checkbox" name="extraServices" value="Hair Styling"> Hair Styling</label>
+          <label><input type="checkbox" name="extraServices" value="Makeup Artistry"> Makeup Artistry</label>
+          <label><input type="checkbox" name="extraServices" value="Invitations & Stationery Design"> Invitations & Stationery Design</label>
+          <label><input type="checkbox" name="extraServices" value="Dance Instructor"> Dance Instructor</label>
+          <label>
+            <input type="checkbox" name="extraServices" value="Other"> Other:
+            <input type="text" id="extraOther" placeholder="Specify extra services" />
+          </label>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-prev" onclick="prevPage(2)">Selected ⬅</button>
+        <button type="button" class="btn btn-next" onclick="nextPage(2)">Next ➔</button>
+      </div>
+    </section>
+
+    <!-- ================= PAGE 3: DREAMS, DETAILS & BUDGET ================= -->
+    <section class="form-page hidden" id="page-3">
+      <h2>Dreams, Details, & Budget</h2>
+
+      <div class="field">
+        <label>1. What is your estimated total budget for these event services? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="budget" value="Below $10,000" required> Below $10,000</label>
+          <label><input type="radio" name="budget" value="$20,000 – $50,000"> $20,000 – $50,000</label>
+          <label><input type="radio" name="budget" value="$50,000 – $100,000"> $50,000 – $100,000</label>
+          <label><input type="radio" name="budget" value="Need guidance on pricing"> I'm not sure yet / I need guidance on pricing</label>
+          <label>
+            <input type="radio" name="budget" value="Other"> Other:
+            <input type="text" id="budgetOther" placeholder="Specify budget" />
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="visionDetails">2. Spill the details! Share your Pinterest boards, color palettes, themes, or specific visions *</label>
+        <textarea id="visionDetails" name="visionDetails" rows="4" required></textarea>
+      </div>
+
+      <div class="field">
+        <label>3. How did you find us? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="referral" value="Facebook" required> Facebook</label>
+          <label><input type="radio" name="referral" value="TikTok"> TikTok</label>
+          <label><input type="radio" name="referral" value="Instagram"> Instagram</label>
+          <label><input type="radio" name="referral" value="Recommendation"> Recommendation from a friend/family member</label>
+          <label><input type="radio" name="referral" value="Google Search"> Google Search</label>
+          <label>
+            <input type="radio" name="referral" value="Other"> Other:
+            <input type="text" id="referralOther" placeholder="Specify source" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Anti-Spam Honeypot Trap -->
+      <input type="text" id="website_hp" name="website_hp" style="display:none;" tabindex="-1" autocomplete="off" />
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-prev" onclick="prevPage(3)">⬅ Previous</button>
+        <button type="button" id="submit-btn" class="btn btn-submit">Submit Inquiry</button>
+      </div>
+      <p id="status-message" class="status"></p>
+    </section>
+
+  </form>
+</main>
+
+<!-- ================= REVIEW / CONFIRMATION MODAL ================= -->
+<div id="confirmModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <h3>Please Review Your Inquiry</h3>
+    <ul id="summaryList" class="summary-list"></ul>
+    <div class="modal-btn-group">
+      <button type="button" id="editBtn" class="btn btn-prev">Edit</button>
+      <button type="button" id="finalSubmitBtn" class="btn btn-submit">Confirm & Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= POST-SUBMISSION MODAL ================= -->
+<div id="postSubmitModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <h3>Inquiry Submitted!</h3>
+    <p class="modal-subtext">Your event inquiry has been received. Would you like to submit another one?</p>
+    <div class="modal-btn-group">
+      <button type="button" id="submitAnotherNo" class="btn btn-prev">No, I'm done</button>
+      <button type="button" id="submitAnotherYes" class="btn btn-submit">Yes, submit another</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/events.js"></script>
+</body>
+</html>

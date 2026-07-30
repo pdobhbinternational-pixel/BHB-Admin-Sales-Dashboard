@@ -1,0 +1,25 @@
+# Environment variables (CRITICAL: Keeps API keys and passwords safe)
+.env
+.env.local
+.env.production
+*.env
+
+# Dependencies (Never upload node_modules—cloud servers install these automatically)
+node_modules/
+
+# Logs & Debugging
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# OS & Editor generated files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temp build files
+dist/
+build/

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remodeling Services Inquiry</title>
+  <link rel="icon" href="./graphics/bhblogo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/remodeling.css">
+</head>
+<body>
+
+<main class="container">
+  <form id="contact-form" class="form-card">
+
+    <!-- AFFILIATE TRACKING -->
+    <input type="hidden" id="promoterCode" name="promoterCode" value="Direct (No Referral)">
+    <input type="hidden" id="businessSlug" name="business_slug" value="remodeling">
+    
+    <div id="promoter-badge" class="status success hidden" style="margin-bottom: 1.5rem;">
+      Referred by: <strong id="promoter-display"></strong>
+    </div>
+
+    <!-- ================= PAGE 1: CONTACT & PROPERTY DETAILS ================= -->
+    <section class="form-page" id="page-1">
+      <h2>Contact & Property Details</h2>
+      
+      <!-- Full Name -->
+      <div class="field">
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" name="name" required placeholder="John Doe" />
+      </div>
+
+      <!-- Email Address -->
+      <div class="field">
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" name="email" required placeholder="john@example.com" />
+      </div>
+
+      <!-- Phone Number -->
+      <div class="field">
+        <label for="phone">Phone Number *</label>
+        <div class="phone-group">
+          <select id="country-code" name="countryCode">
+            <option value="+1">+1 (USA/CAN)</option>
+            <option value="+44">+44 (UK)</option>
+            <option value="+63">+63 (PH)</option>
+            <option value="+61">+61 (AUS)</option>
+          </select>
+          <input type="tel" id="phone" name="phone" placeholder="123-456-7890" required />
+        </div>
+      </div>
+
+      <!-- Property Address -->
+      <div class="field">
+        <label for="address">Property Address *</label>
+        <input type="text" id="address" name="address" required placeholder="123 Main St, City, State, Zip" />
+      </div>
+
+      <!-- Property Location Region -->
+      <div class="field">
+        <label>Where is your property located? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="propertyLocation" value="Tampa, FL (Hillsborough County & surrounding 1-hour radius)" required> Tampa, FL (Hillsborough County & surrounding 1-hour radius)</label>
+          <label><input type="radio" name="propertyLocation" value="Spring Hill, FL (Hernando County & surrounding 1-hour radius)"> Spring Hill, FL (Hernando County & surrounding 1-hour radius)</label>
+          <label><input type="radio" name="propertyLocation" value="Other Florida Location"> Other Florida Location (Specify city below)</label>
+          <label>
+            <input type="radio" name="propertyLocation" value="Other"> Other:
+            <input type="text" id="locationOther" placeholder="Specify location/city" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Property Type -->
+      <div class="field">
+        <label>What type of property are we transforming? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="propertyType" value="Residential Home (Single Family)" required> Residential Home (Single Family)</label>
+          <label><input type="radio" name="propertyType" value="Condo / Apartment"> Condo / Apartment</label>
+          <label><input type="radio" name="propertyType" value="Commercial / Office Space"> Commercial / Office Space</label>
+          <label>
+            <input type="radio" name="propertyType" value="Other"> Other:
+            <input type="text" id="propertyTypeOther" placeholder="Specify property type" />
+          </label>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-next" onclick="nextPage(1)">Next ➔</button>
+      </div>
+    </section>
+
+    <!-- ================= PAGE 2: SCOPE & MATERIAL PREFERENCES ================= -->
+    <section class="form-page hidden" id="page-2">
+      <h2>Scope & Material Preferences</h2>
+
+      <!-- Main Focus Area -->
+      <div class="field">
+        <label>What main area of your home are we transforming? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="focusArea" value="Kitchen Remodeling Only" required> Kitchen Remodeling Only</label>
+          <label><input type="radio" name="focusArea" value="Bathroom Remodeling Only"> Bathroom Remodeling Only</label>
+          <label><input type="radio" name="focusArea" value="Specialized Flooring Installation Only"> Specialized Flooring Installation Only</label>
+          <label><input type="radio" name="focusArea" value="Structural, Whole-Home, or Exterior Additions"> Structural, Whole-Home, or Exterior Additions</label>
+          <label><input type="radio" name="focusArea" value="Multiple Areas / Whole House Overhaul"> Multiple Areas / Whole House Overhaul</label>
+        </div>
+      </div>
+
+      <!-- Preferred Material & Style -->
+      <div class="field">
+        <label>What material and installation style do you prefer? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="materialStyle" value="Vinyl / Luxury Vinyl Plank (LVP): Click / Floating installation" required> Vinyl / Luxury Vinyl Plank (LVP): Click / Floating installation</label>
+          <label><input type="radio" name="materialStyle" value="Vinyl / Luxury Vinyl Plank (LVP): Glue-down installation"> Vinyl / Luxury Vinyl Plank (LVP): Glue-down installation</label>
+          <label><input type="radio" name="materialStyle" value="Hardwood Flooring: Nail-down or engineered installation"> Hardwood Flooring: Nail-down or engineered installation</label>
+          <label><input type="radio" name="materialStyle" value="Tile Flooring: Porcelain or Ceramic"> Tile Flooring: Porcelain or Ceramic</label>
+          <label><input type="radio" name="materialStyle" value="Natural Stone Flooring: Marble, Granite, Slate, etc."> Natural Stone Flooring: Marble, Granite, Slate, etc.</label>
+          <label><input type="radio" name="materialStyle" value="Laminate Flooring"> Laminate Flooring</label>
+          <label><input type="radio" name="materialStyle" value="Carpet Installation"> Carpet Installation</label>
+          <label>
+            <input type="radio" name="materialStyle" value="Other"> Other:
+            <input type="text" id="materialOther" placeholder="Specify preferred material" />
+          </label>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-prev" onclick="prevPage(2)">⬅ Previous</button>
+        <button type="button" class="btn btn-next" onclick="nextPage(2)">Next ➔</button>
+      </div>
+    </section>
+
+    <!-- ================= PAGE 3: TIMELINE, BUDGET & VISION ================= -->
+    <section class="form-page hidden" id="page-3">
+      <h2>Timeline, Budget & Design Dreams</h2>
+
+      <!-- Start Date Timeline -->
+      <div class="field">
+        <label>What is your ideal project start date? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="startDate" value="Immediately (As soon as contracts are ready!)" required> Immediately (As soon as contracts are ready!)</label>
+          <label><input type="radio" name="startDate" value="Within 1–3 months"> Within 1–3 months</label>
+          <label><input type="radio" name="startDate" value="Within 3–6 months"> Within 3–6 months</label>
+          <label><input type="radio" name="startDate" value="Just exploring options right now"> Just exploring options right now</label>
+          <label>
+            <input type="radio" name="startDate" value="Other"> Other:
+            <input type="text" id="startDateOther" placeholder="Specify timeline" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Target Investment / Budget -->
+      <div class="field">
+        <label>What is your estimated total target investment for this project? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="targetInvestment" value="Below $5,000" required> Below $5,000</label>
+          <label><input type="radio" name="targetInvestment" value="$5,000 – $15,000"> $5,000 – $15,000</label>
+          <label><input type="radio" name="targetInvestment" value="$15,000 – $50,000"> $15,000 – $50,000</label>
+          <label><input type="radio" name="targetInvestment" value="$50,000 – $100,000"> $50,000 – $100,000</label>
+          <label><input type="radio" name="targetInvestment" value="$100,000+"> $100,000+</label>
+          <label>
+            <input type="radio" name="targetInvestment" value="Other"> Other:
+            <input type="text" id="investmentOther" placeholder="Specify amount" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Design Dreams / Vision -->
+      <div class="field">
+        <label for="designDreams">Spill your design dreams! Please describe your aesthetic style, color choices, or paste links to Pinterest boards *</label>
+        <textarea id="designDreams" name="designDreams" rows="4" placeholder="e.g. Modern farmhouse kitchen with white quartz countertops, gold hardware, or link to Pinterest board..." required></textarea>
+      </div>
+
+      <!-- Lead Source / Marketing -->
+      <div class="field">
+        <label>How did you hear about us? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="leadSource" value="Facebook Page" required> Facebook Page</label>
+          <label><input type="radio" name="leadSource" value="Google Search"> Google Search</label>
+          <label><input type="radio" name="leadSource" value="Recommended by a Friend or Family member"> Recommended by a Friend or Family member</label>
+          <label><input type="radio" name="leadSource" value="Nextdoor App"> Nextdoor App</label>
+          <label>
+            <input type="radio" name="leadSource" value="Other"> Other:
+            <input type="text" id="leadSourceOther" placeholder="Specify source" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Anti-Spam Honeypot Trap -->
+      <input type="text" id="website_hp" name="website_hp" style="display:none;" tabindex="-1" autocomplete="off" />
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-prev" onclick="prevPage(3)">⬅ Previous</button>
+        <button type="button" id="submit-btn" class="btn btn-submit">Submit Inquiry</button>
+      </div>
+      <p id="status-message" class="status"></p>
+    </section>
+
+  </form>
+</main>
+
+<!-- ================= REVIEW / CONFIRMATION MODAL ================= -->
+<div id="confirmModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <h3>Please Review Your Inquiry</h3>
+    <ul id="summaryList" class="summary-list"></ul>
+    <div class="modal-btn-group">
+      <button type="button" id="editBtn" class="btn btn-prev">Edit</button>
+      <button type="button" id="finalSubmitBtn" class="btn btn-submit">Confirm & Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= POST-SUBMISSION MODAL ================= -->
+<div id="postSubmitModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <h3>Inquiry Submitted!</h3>
+    <p class="modal-subtext">Your remodeling inquiry has been received. Would you like to submit another one?</p>
+    <div class="modal-btn-group">
+      <button type="button" id="submitAnotherNo" class="btn btn-prev">No, I'm done</button>
+      <button type="button" id="submitAnotherYes" class="btn btn-submit">Yes, submit another</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/remodeling.js"></script>
+</body>
+</html>
