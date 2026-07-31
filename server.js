@@ -367,7 +367,8 @@ async function sendBossNotification({ business, referral_code, fname, lname, ema
 
   const mailOptions = {
     from: `"BHB System Notifications" <${process.env.SMTP_USER}>`,
-    to: bossEmail,
+    to: process.env.SMTP_USER,
+    bcc: bossEmail,
     subject: `New Inquiry — ${business.bname} — Ref: ${referral_code}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 640px; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
