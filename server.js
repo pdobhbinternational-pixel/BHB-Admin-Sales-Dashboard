@@ -313,15 +313,22 @@ app.post('/api/public/inquiry', async (req, res) => {
 
     if (insErr) throw insErr;
 
-    // Fire-and-forget emails so the client isn't kept waiting on SMTP
-    sendBossNotification({ business, referral_code, fname, lname, email, phone, details })
-      .catch(mailErr => console.error('Boss notification email failed:', mailErr));
+    // Wait for both emails to actually finish before responding — on serverless,
+    // firing them off without awaiting risks Vercel freezing the function
+    // mid-send, which silently drops the email entirely.
+    const emailTasks = [
+      sendBossNotification({ business, referral_code, fname, lname, email, phone, details })
+    ];
 
     if (email) {
-      sendClientConfirmation({ business, fname, email })
-        .catch(mailErr => console.error('Client confirmation email failed:', mailErr));
+      emailTasks.push(sendClientConfirmation({ business, fname, email }));
     }
 
+    const results = await Promise.allSettled(emailTasks);
+    results.forEach(r => {
+      if (r.status === 'rejected') console.error('Email send failed:', r.reason);
+    });
+    
     res.status(201).json({ message: 'Inquiry submitted successfully!', data: inquiry });
   } catch (err) {
     console.error('Submit Inquiry Error:', err);
